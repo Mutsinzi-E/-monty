@@ -1,14 +1,15 @@
 #include "monty.h"
+#include <string.h>
 
 /**
- * get_op_func - selects function for opcode
- * @opcode: command string
+ * get_op_func - selects correct function for opcode
+ * @opcode: instruction string
  *
- * Return: function pointer or NULL
+ * Return: pointer to function or NULL
  */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 {
-	int i = 0;
+	int i;
 
 	instruction_t ops[] = {
 		{"push", push},
@@ -17,14 +18,17 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"swap", swap},
 		{"add", add},
 		{"pint", pint},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
-	while (ops[i].opcode)
+	if (!opcode)
+		return (NULL);
+
+	for (i = 0; ops[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcode, ops[i].opcode) == 0)
 			return (ops[i].f);
-		i++;
 	}
 
 	return (NULL);

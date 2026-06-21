@@ -1,10 +1,11 @@
 #include "monty.h"
+#include <ctype.h>
 
 /**
- * is_integer - checks if string is integer
- * @str: input string
+ * is_integer - checks if a string is a valid integer
+ * @str: string to check
  *
- * Return: 1 if valid, 0 otherwise
+ * Return: 1 if valid integer, 0 otherwise
  */
 int is_integer(char *str)
 {
@@ -14,9 +15,12 @@ int is_integer(char *str)
 		return (0);
 
 	if (str[0] == '-' || str[0] == '+')
-		i++;
+		i = 1;
 
-	for (; str[i]; i++)
+	if (str[i] == '\0')
+		return (0);
+
+	for (; str[i] != '\0'; i++)
 	{
 		if (!isdigit(str[i]))
 			return (0);
