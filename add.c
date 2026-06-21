@@ -1,16 +1,17 @@
 #include "monty.h"
 
 /**
- * add - adds top two elements
+ * add - adds the top two elements of the stack
  * @stack: pointer to stack
- * @line_number: line number
+ * @line_number: line number of instruction
  *
  * Return: void
  */
 void add(stack_t **stack, unsigned int line_number)
 {
+	stack_t *first;
+	stack_t *second;
 	int sum;
-	stack_t *tmp;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
@@ -18,11 +19,14 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	sum = (*stack)->n + (*stack)->next->n;
+	first = *stack;
+	second = first->next;
 
-	tmp = *stack;
-	*stack = (*stack)->next;
-	(*stack)->n = sum;
+	sum = first->n + second->n;
 
-	free(tmp);
+	second->n = sum;
+	*stack = second;
+	second->prev = NULL;
+
+	free(first);
 }
