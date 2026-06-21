@@ -2,7 +2,7 @@
 #include <string.h>
 
 /**
- * get_op_func - selects correct function for opcode
+ * get_op_func - selects the correct function for an opcode
  * @opcode: instruction string
  *
  * Return: pointer to function or NULL
@@ -19,6 +19,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"add", add},
 		{"pint", pint},
 		{"nop", nop},
+		{"div", div_op},
 		{NULL, NULL}
 	};
 
