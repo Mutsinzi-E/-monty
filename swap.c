@@ -1,15 +1,16 @@
 #include "monty.h"
 
 /**
- * swap - swaps top two elements
+ * swap - swaps the top two elements of the stack
  * @stack: pointer to stack
- * @line_number: line number
+ * @line_number: line number of instruction
  *
  * Return: void
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *first, *second;
+	stack_t *first;
+	stack_t *second;
 
 	if (!stack || !*stack || !(*stack)->next)
 	{
