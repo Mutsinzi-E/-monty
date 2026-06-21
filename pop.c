@@ -1,9 +1,9 @@
 #include "monty.h"
 
 /**
- * pop - removes top element of stack
+ * pop - removes the top element of the stack
  * @stack: pointer to stack
- * @line_number: line number
+ * @line_number: line number of instruction
  *
  * Return: void
  */
