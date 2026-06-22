@@ -5,15 +5,21 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
     instruction_t ops[] = {
         {"push", push},
         {"pall", pall},
-        {"pop", pop},
         {"pint", pint},
+        {"pop", pop},
+
+        {"swap", swap},
+
         {"add", add},
         {"sub", sub},
-        {"div", divi},   /* FIXED */
+        {"div", divi},
         {"mul", mul},
         {"mod", mod},
-        {"nop", nop},     /* FIXED */
+
+        {"nop", nop},
+        {"pchar", pchar},
         {"pstr", pstr},
+
         {NULL, NULL}
     };
 
