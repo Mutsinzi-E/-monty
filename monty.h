@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* ===== STACK STRUCT ===== */
+/* STACK STRUCT */
 typedef struct stack_s
 {
     int n;
@@ -13,36 +13,37 @@ typedef struct stack_s
     struct stack_s *next;
 } stack_t;
 
-/* ===== OPCODE STRUCT ===== */
+/* OPCODE STRUCT */
 typedef struct instruction_s
 {
     char *opcode;
     void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* ===== CORE FUNCTIONS ===== */
+/* CORE FUNCTIONS */
 int is_integer(char *str);
 void execute(char *opcode, stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);
 
-/* ===== STACK OPS ===== */
+/* STACK OPS */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 
-/* ===== ARITHMETIC OPS ===== */
+/* ARITHMETIC OPS */
 void add(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void divi(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 
-/* ===== SPECIAL OPS ===== */
+/* SPECIAL OPS */
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
 
-#endif /* MONTY_H */
+#endif

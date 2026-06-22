@@ -19,6 +19,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
         {"nop", nop},
         {"pchar", pchar},
         {"pstr", pstr},
+        {"rotl", rotl},   /* 🔥 THIS WAS MISSING */
 
         {NULL, NULL}
     };
