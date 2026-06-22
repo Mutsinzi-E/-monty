@@ -3,7 +3,7 @@
 
 /**
  * get_op_func - selects the correct function for an opcode
- * @opcode: instruction string
+ * @opcode: opcode string
  *
  * Return: pointer to function or NULL
  */
@@ -14,17 +14,16 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"pint", pint},
-		{"nop", nop},
+		{"sub", sub},
 		{"div", div_op},
+		{"mul", mul},
+		{"nop", nop},
 		{NULL, NULL}
 	};
-
-	if (!opcode)
-		return (NULL);
 
 	for (i = 0; ops[i].opcode != NULL; i++)
 	{
