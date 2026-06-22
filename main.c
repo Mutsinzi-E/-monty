@@ -3,7 +3,7 @@
 /**
  * main - Monty interpreter entry point
  * @argc: argument count
- * @argv: argument vector
+ * @argv: arguments
  *
  * Return: 0 on success
  */
@@ -11,10 +11,11 @@ int main(int argc, char **argv)
 {
 	FILE *file;
 	char *line = NULL;
-	char *opcode;
 	size_t len = 0;
-	unsigned int line_number = 0;
+	ssize_t read;
+	char *opcode;
 	stack_t *stack = NULL;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
@@ -29,20 +30,32 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	while (getline(&line, &len, file) != -1)
+	while ((read = getline(&line, &len, file)) != -1)
 	{
+		int i = 0;
+
 		line_number++;
 
-		opcode = strtok(line, " \t\n");
-		if (!opcode)
+		/* skip leading spaces/tabs before anything */
+		while (line[i] == ' ' || line[i] == '\t')
+			i++;
+
+		/* skip comment lines */
+		if (line[i] == '#')
+			continue;
+
+		opcode = strtok(line, " \n\t");
+
+		/* skip empty lines */
+		if (opcode == NULL)
 			continue;
 
 		execute(opcode, &stack, line_number);
 	}
 
 	free(line);
-	fclose(file);
 	free_stack(stack);
+	fclose(file);
 
 	return (0);
 }
